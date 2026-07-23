@@ -1,39 +1,32 @@
-import { AppleMaps, GoogleMaps } from "expo-maps";
+import MapView from "react-native-maps";
 import { Platform, Text, View } from "react-native";
 
-const INITIAL_CAMERA = {
-  coordinates: { latitude: 37.7749, longitude: -122.4194 },
-  zoom: 12,
+// Tbilisi, Georgia
+const INITIAL_REGION = {
+  latitude: 41.7151,
+  longitude: 44.8271,
+  latitudeDelta: 0.0922,
+  longitudeDelta: 0.0421,
 };
 
 /**
  * Full-bleed map. Apple Maps on iOS, Google Maps on Android.
- * Requires a development build — this native view is not in Expo Go.
+ * Native module — needs a development build, not Expo Go.
  */
 export function Map() {
-  if (Platform.OS === "ios") {
+  if (Platform.OS === "web") {
     return (
-      <AppleMaps.View
-        style={{ flex: 1 }}
-        cameraPosition={INITIAL_CAMERA}
-        properties={{ isMyLocationEnabled: true }}
-      />
-    );
-  }
-
-  if (Platform.OS === "android") {
-    return (
-      <GoogleMaps.View
-        style={{ flex: 1 }}
-        cameraPosition={INITIAL_CAMERA}
-        properties={{ isMyLocationEnabled: true }}
-      />
+      <View className="flex-1 items-center justify-center bg-zinc-100">
+        <Text className="text-sm text-zinc-500">Map is unavailable on web.</Text>
+      </View>
     );
   }
 
   return (
-    <View className="flex-1 items-center justify-center bg-zinc-100">
-      <Text className="text-sm text-zinc-500">Map is unavailable on web.</Text>
-    </View>
+    <MapView
+      style={{ flex: 1 }}
+      initialRegion={INITIAL_REGION}
+      showsUserLocation
+    />
   );
 }

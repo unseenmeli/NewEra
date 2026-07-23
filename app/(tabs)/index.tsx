@@ -19,7 +19,9 @@ export default function HomeScreen() {
             </Text>
           </View>
 
-          <View className="flex-1 overflow-hidden rounded-t-3xl">
+          {/* Bleeds ~16px past each side so the side rounding is cropped
+              off-screen — only the top corners read as rounded. */}
+          <View className="-mx-4 flex-1 overflow-hidden rounded-t-[72px]">
             <Map />
           </View>
         </SafeAreaView>
