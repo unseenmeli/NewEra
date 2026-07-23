@@ -1,24 +1,35 @@
 # new_era
 
-Next.js (App Router) + TypeScript + Tailwind CSS v4 + InstantDB.
+iOS app — Expo (SDK 57) + Expo Router + NativeWind + InstantDB.
 
 ## Setup
 
 1. Create an app at [instantdb.com/dash](https://instantdb.com/dash) and copy the App ID.
-2. Add it to `.env.local`:
+2. Add it to `.env`:
 
    ```
-   NEXT_PUBLIC_INSTANT_APP_ID=your-app-id
+   EXPO_PUBLIC_INSTANT_APP_ID=your-app-id
    ```
 
 3. Install and run:
 
    ```bash
    npm install
-   npm run dev
+   npm run ios
    ```
 
-The home page shows the Instant connection status so you can confirm the client is wired up.
+   `npm run ios` opens the iOS simulator (needs Xcode). To run on a physical
+   iPhone, use `npm start` and scan the QR code with Expo Go.
+
+## v0.01 scope
+
+Three screens, nothing more:
+
+- `app/login.tsx` — InstantDB magic-code auth (email → 6-digit code)
+- `app/(tabs)/index.tsx` — Home
+- `app/(tabs)/profile.tsx` — Profile, with sign out
+
+Signed-out users are redirected to login by `src/components/AuthGate.tsx`.
 
 ## Instant schema & permissions
 
@@ -31,5 +42,6 @@ npx instant-cli@latest push
 ## Layout
 
 - `src/lib/db.ts` — the Instant client (`db`), typed against the schema
+- `src/components/AuthGate.tsx` — redirects signed-out users to `/login`
 - `instant.schema.ts` — entities and links
 - `instant.perms.ts` — permission rules

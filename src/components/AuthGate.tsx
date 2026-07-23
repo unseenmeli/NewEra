@@ -1,8 +1,7 @@
-"use client";
-
-import { useRouter } from "next/navigation";
+import type { User } from "@instantdb/react-native";
+import { useRouter } from "expo-router";
 import { useEffect } from "react";
-import type { User } from "@instantdb/react";
+import { ActivityIndicator, Text, View } from "react-native";
 import { db } from "@/lib/db";
 
 /**
@@ -23,11 +22,19 @@ export function AuthGate({
   }, [isLoading, user, router]);
 
   if (isLoading) {
-    return <p className="p-8 text-sm text-zinc-500">Loading…</p>;
+    return (
+      <View className="flex-1 items-center justify-center">
+        <ActivityIndicator />
+      </View>
+    );
   }
 
   if (error) {
-    return <p className="p-8 text-sm text-red-600">{error.message}</p>;
+    return (
+      <View className="flex-1 items-center justify-center p-6">
+        <Text className="text-center text-red-600">{error.message}</Text>
+      </View>
+    );
   }
 
   if (!user) {
