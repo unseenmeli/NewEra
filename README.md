@@ -15,18 +15,22 @@ iOS app — Expo (SDK 57) + Expo Router + NativeWind + InstantDB.
 
    ```bash
    npm install
-   npm run ios
+   npx expo run:ios
    ```
 
-   `npm run ios` opens the iOS simulator (needs Xcode). To run on a physical
-   iPhone, use `npm start` and scan the QR code with Expo Go.
+   This project uses `expo-maps`, a native module, so it needs a **development
+   build** — Expo Go cannot load it. `npx expo run:ios` compiles the app into
+   the simulator; the first build takes a few minutes.
+
+   After that, `npm start` and hot reload work as normal. You only need to
+   re-run `expo run:ios` when native dependencies change.
 
 ## v0.01 scope
 
 Three screens, nothing more:
 
 - `app/login.tsx` — InstantDB magic-code auth (email → 6-digit code)
-- `app/(tabs)/index.tsx` — Home
+- `app/(tabs)/index.tsx` — Home, with a full-bleed map
 - `app/(tabs)/profile.tsx` — Profile, with sign out
 
 Signed-out users are redirected to login by `src/components/AuthGate.tsx`.
@@ -43,5 +47,6 @@ npx instant-cli@latest push
 
 - `src/lib/db.ts` — the Instant client (`db`), typed against the schema
 - `src/components/AuthGate.tsx` — redirects signed-out users to `/login`
+- `src/components/Map.tsx` — Apple Maps on iOS, Google Maps on Android
 - `instant.schema.ts` — entities and links
 - `instant.perms.ts` — permission rules
