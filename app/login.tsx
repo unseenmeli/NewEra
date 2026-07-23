@@ -72,10 +72,10 @@ function EmailForm({ onSent }: { onSent: (email: string) => void }) {
   return (
     <View className="gap-4">
       <View className="gap-1">
-        <Text className="text-3xl font-semibold tracking-tight text-zinc-900">
+        <Text className="text-3xl font-outfit-semibold tracking-tight text-zinc-900">
           Sign in
         </Text>
-        <Text className="text-base text-zinc-500">
+        <Text className="text-base text-zinc-500 font-outfit">
           We&apos;ll email you a one-time code.
         </Text>
       </View>
@@ -93,17 +93,17 @@ function EmailForm({ onSent }: { onSent: (email: string) => void }) {
         editable={!pending}
         returnKeyType="go"
         onSubmitEditing={handleSubmit}
-        className="rounded-xl border border-zinc-300 px-4 py-3.5 text-base text-zinc-900"
+        className="rounded-xl border border-zinc-300 px-4 py-3.5 text-base text-zinc-900 font-outfit"
       />
 
-      {error ? <Text className="text-sm text-red-600">{error}</Text> : null}
+      {error ? <Text className="text-sm text-red-600 font-outfit">{error}</Text> : null}
 
       <Pressable
         onPress={handleSubmit}
         disabled={pending}
         className="items-center rounded-xl bg-zinc-900 px-4 py-3.5 active:opacity-80 disabled:opacity-50"
       >
-        <Text className="text-base font-medium text-white">
+        <Text className="text-base font-outfit-medium text-white">
           {pending ? "Sending…" : "Send code"}
         </Text>
       </Pressable>
@@ -135,10 +135,10 @@ function CodeForm({ email, onBack }: { email: string; onBack: () => void }) {
   return (
     <View className="gap-4">
       <View className="gap-1">
-        <Text className="text-3xl font-semibold tracking-tight text-zinc-900">
+        <Text className="text-3xl font-outfit-semibold tracking-tight text-zinc-900">
           Enter code
         </Text>
-        <Text className="text-base text-zinc-500">
+        <Text className="text-base text-zinc-500 font-outfit">
           We sent a code to <Text className="text-zinc-900">{email}</Text>.
         </Text>
       </View>
@@ -155,23 +155,23 @@ function CodeForm({ email, onBack }: { email: string; onBack: () => void }) {
         autoFocus
         returnKeyType="go"
         onSubmitEditing={handleSubmit}
-        className="rounded-xl border border-zinc-300 px-4 py-3.5 text-center text-2xl tracking-[8px] text-zinc-900"
+        className="rounded-xl border border-zinc-300 px-4 py-3.5 text-center text-2xl tracking-[8px] text-zinc-900 font-outfit"
       />
 
-      {error ? <Text className="text-sm text-red-600">{error}</Text> : null}
+      {error ? <Text className="text-sm text-red-600 font-outfit">{error}</Text> : null}
 
       <Pressable
         onPress={handleSubmit}
         disabled={pending}
         className="items-center rounded-xl bg-zinc-900 px-4 py-3.5 active:opacity-80 disabled:opacity-50"
       >
-        <Text className="text-base font-medium text-white">
+        <Text className="text-base font-outfit-medium text-white">
           {pending ? "Verifying…" : "Verify"}
         </Text>
       </Pressable>
 
       <Pressable onPress={onBack} className="items-center py-2">
-        <Text className="text-sm text-zinc-500">Use a different email</Text>
+        <Text className="text-sm text-zinc-500 font-outfit">Use a different email</Text>
       </Pressable>
     </View>
   );
